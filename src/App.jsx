@@ -20,6 +20,17 @@ const App = () => {
     },
   ]);
 
+  const handleTaskClick = (taskId) => {
+    const newTasks = tasks.map(task => {
+      if (task.id == taskId) return { ...task, completed: !task.completed }
+
+      return task;
+    })
+
+    setTasks(newTasks);
+
+  }
+
   const hendleTaskAddition = (tasktitle) => {
     const newTasks = [...tasks, {
       title: tasktitle,
@@ -35,7 +46,7 @@ const App = () => {
     <>
       <div className='container'>
         <AddTask hendleTaskAddition={hendleTaskAddition} />
-        <Tasks tasks={tasks} />
+        <Tasks tasks={tasks} handleTaskClick={handleTaskClick} />
       </div>
     </>
   )
